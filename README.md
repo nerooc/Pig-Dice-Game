@@ -1,4 +1,10 @@
-# Pig (dice game)
+# `Pig - dice game`
+
+## Tech stack
+- HTML
+- CSS
+- JS
+
 Basic game made as an exercise with vanilla Javascript.
 
 
