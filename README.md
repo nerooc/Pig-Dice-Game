@@ -1,5 +1,8 @@
 # `Pig - dice game`
 
+### [OPEN DEMO](https://pig-dice-gm.netlify.app/)
+
+
 ## Tech stack
 - HTML
 - CSS
