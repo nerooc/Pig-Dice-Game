@@ -8,7 +8,7 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, pointLimit;
 
 gameInit();
 
@@ -36,7 +36,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 		document.querySelector('#score-' + activePlayer).textContent =
 			scores[activePlayer];
 
-		if (scores[activePlayer] >= 30) {
+		if (scores[activePlayer] >= (pointLimit ? pointLimit : 30)) {
 			document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
 			document.querySelector('.dice').style.display = 'none';
 
@@ -49,12 +49,18 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 
 			//document.querySelector('.btn-hold').style.display = 'none';
 			//document.querySelector('.btn-roll').style.display = 'none';
+			document.getElementById('inp-limit').disabled = false;
 
 			gamePlaying = false;
 		} else {
+			document.getElementById('inp-limit').disabled = true;
 			nextPlayer();
 		}
 	}
+});
+
+document.getElementById('inp-limit').addEventListener('change', (e) => {
+	pointLimit = document.getElementById("inp-limit").value;
 });
 
 document.querySelector('.btn-new').addEventListener('click', function() {
@@ -82,7 +88,6 @@ function nextPlayer() {
 
 function gameInit() {
 	gamePlaying = true;
-
 	//document.querySelector('.btn-hold').style.display = 'block';
 	//document.querySelector('.btn-roll').style.display = 'block';
 
@@ -98,6 +103,7 @@ function clear() {
 	scores = [0, 0];
 
 	document.querySelector('.dice').style.display = 'none';
+	document.getElementById('inp-limit').textContent = '';
 	document.getElementById('score-0').textContent = '0';
 	document.getElementById('score-1').textContent = '0';
 	document.getElementById('current-0').textContent = '0';
